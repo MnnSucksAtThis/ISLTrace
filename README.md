@@ -14,28 +14,34 @@ The result screen presents three technique stars for path movement, hand shape, 
 
 The learner-facing sign catalog is `app/src/main/assets/signs.csv`. It controls which signs appear, their display names, the reference JSON used by the guide, and the demonstration video used by the Video button.
 
-All 20 current model classes are enabled by default. The catalog is validated at load time against `labels.txt` and the referenced assets. A bad label or missing file produces a clear catalog error instead of silently making the sign impossible to recognise.
+This build contains 15 practice signs. Onion, Sports, Laptop, Computer and Sofa have been removed from the sign catalog and their reference/video assets. The original 20-class TFLite model and its 20-label `labels.txt` are intentionally retained so the model output indices remain aligned; only the 15 catalogued signs are available to learners.
+
+The catalog is validated at load time against `labels.txt` and the referenced assets. A bad label or missing file produces a clear catalog error instead of silently making the sign impossible to recognise.
 
 See [CONTENT_CATALOG.md](CONTENT_CATALOG.md) for how to reorder or remap signs and media. The current classifier supports the 20 classes in `app/src/main/assets/labels.txt`; a genuinely new model class requires a retrained model and matching labels.
 
 ## Research pilot logging
 
-The app uses researcher-assigned pseudonymous participant IDs, using formats such as P001, P002, and P003. On each study visit, the participant enters their ID and prior ISL experience, confirms that they have received and agreed to the approved study information, and selects their signing hand.
+The participant login and consent screens have been removed. The application automatically generates an anonymous participant ID and retains it per installation. Participants do not need to enter an ID or complete an in-app consent screen.
+
+Before hand selection, participants are instructed to lower their hands and then raise the hand they intend to use for signing.
 
 The app stores local metadata only:
 
-- Participant and session records
-- Foreground session duration
+- Automatically generated anonymous participant ID
+- Session records and foreground session duration
 - Sign attempts and existing trace/classifier outputs
 - Reference-video, playback-speed, retry and orientation interactions
-- Per-sign difficulty and feedback-usefulness ratings
 
-The study logger does not save camera images, video, or landmark sequences. Data are stored in the application's private `research_data` directory. After finishing a participant session, the researcher can export from the home screen using **Researcher data export**, protected by a configurable local PIN. This export path does not require a participant sign-in, create a session, or delete existing data.
+The per-sign questionnaire has been removed. Normal attempt results and feedback are retained.
 
+The study logger does not save camera images, video, or landmark sequences. Data are stored in the application's private `research_data` directory.
 
-The export contains `participants.csv`, `sessions.csv`, `attempts.csv`, `interactions.csv`, `sign_feedback.csv`, the vocabulary/label snapshot and a README. See [USER_STUDY_QUICK_START.md](USER_STUDY_QUICK_START.md) for the pilot procedure and data interpretation notes.
+Researcher data export is accessed through a long press on the **ISL Trace 15** title on the home screen. The export contains `sessions.csv`, `attempts.csv`, `interactions.csv`, the vocabulary/label snapshot and a README. Exporting does not delete existing data.
 
-The in-app consent checkbox records participant confirmation; it does not replace the institution-approved participant information sheet or consent process. Obtain required institutional ethics approval/clearance before recruiting or collecting study data.
+See [USER_STUDY_QUICK_START.md](USER_STUDY_QUICK_START.md) for the pilot procedure and data interpretation notes.
+
+Obtain required institutional ethics approval/clearance before recruiting or collecting study data.
 
 ## Code guide
 
@@ -55,9 +61,8 @@ Open the project in Android Studio using its configured Android SDK/Gradle envir
 ./gradlew :app:testDebugUnitTest
 ```
 
-Device camera and model tests require an Android device or emulator with camera support. Before the first participant, perform a complete dry run on the actual study tablet, including participant sign-in, several signs, feedback, finishing a session, researcher-only export, and opening the ZIP on a computer.
-
+Device camera and model tests require an Android device or emulator with camera support. Before the first participant, perform a complete dry run on the actual study tablet, including automatic participant ID generation, hand selection, several signs, feedback, finishing a session, researcher-only export, and opening the ZIP on a computer.
 
 ## ISL Trace 15 variant
 
-This build contains 15 practice signs. Onion, Sports, Laptop, Computer and Sofa have been removed from the sign catalog and their reference/video assets. The original 20-class TFLite model and its 20-label `labels.txt` are intentionally retained so the model output indices remain aligned; only the 15 catalogued signs are available to learners. This variant has a separate Android application ID (`com.example.islteachingapp.trace15`) and app data storage from ISL Trace.
+This build has a separate Android application ID (`com.example.islteachingapp.trace15`) and app data storage from ISL Trace.
