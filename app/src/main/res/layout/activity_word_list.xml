@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose a sign to practise"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvHandInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Participant · Right-handed"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/listWords"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnFinishSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish participant session" />
+
+    <Button
+        android:id="@+id/btnChangeHand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change signing hand" />
+
+</LinearLayout>

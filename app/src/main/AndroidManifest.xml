@@ -1,0 +1,45 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".ISLTraceApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.ISLTeachingApp"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="fullUser"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".HandSelectActivity"
+            android:screenOrientation="fullUser"
+            android:exported="false" />
+
+        <activity
+            android:name=".WordListActivity"
+            android:screenOrientation="fullUser"
+            android:exported="false" />
+
+        <activity
+            android:name=".PracticeActivity"
+            android:screenOrientation="fullUser"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

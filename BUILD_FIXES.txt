@@ -1,0 +1,15 @@
+Build fixes and result-screen update in this package.
+
+1. MainActivity.kt: uses EditText.setSingleLine(true), which is supported by the Android API.
+2. WordListActivity.kt: passes the required Activity Context to StudyLogger.currentParticipant(this).
+3. PracticeActivity.kt: keeps the three technique stars independent from the app recognition-model status. The result screen now displays a separate recognition line: recognised, not recognised, or recognition unavailable. Learner-facing text does not use the term AI.
+4. Both portrait and landscape practice layouts include the separate recognition-status line.
+5. Participant IDs retain the P001 format (P followed by three digits). The researcher export PIN is 1504; it is not a participant ID.
+6. TraceLogicTest.kt: updates the old right-side-panel landscape test to check the current bottom-control layout.
+
+No recognition model files, classifier thresholds, TraceScorer thresholds, reference JSON files, reference videos, or sign catalog entries were changed.
+
+Build verification: this package was statically checked, but a fresh Android Gradle build could not be run in the packaging environment. Run ./gradlew assembleDebug and ./gradlew testDebugUnitTest locally before using the application with study participants.
+
+
+ISL Trace 15 variant: created as a separate installable app with applicationId com.example.islteachingapp.trace15. The five requested catalog entries (Onion, Sports, Laptop, Computer, Sofa) and their reference/video assets are removed. The 15 remaining signs retain the existing trace scoring and recognition flow. The original 20-output TFLite model and 20-entry labels.txt are retained to preserve output-index alignment; removed signs are not available in the app catalog.

@@ -1,0 +1,16 @@
+display_name,classifier_label,reference_asset,video_asset,enabled
+Absent,Absent,reference/absent.json,videos/absent.mp4,true
+Approve,Approve,reference/approve.json,videos/approve.mp4,true
+Red,Red,reference/red.json,videos/red.mp4,true
+Green,Green,reference/green.json,videos/green.mp4,true
+Today,Today,reference/today.json,videos/today.mp4,true
+Yesterday,Yesterday,reference/yesterday.json,videos/yesterday.mp4,true
+Brain,Brain,reference/brain.json,videos/brain.mp4,true
+Heart,Heart,reference/heart.json,videos/heart.mp4,true
+Book,Book,reference/book.json,videos/book.mp4,true
+Pen,Pen,reference/pen.json,videos/pen.mp4,true
+Chair,Chair,reference/chair.json,videos/chair.mp4,true
+Cat,Cat,reference/cat.json,videos/cat.mp4,true
+Dog,Dog,reference/dog.json,videos/dog.mp4,true
+Game,Game,reference/game.json,videos/game.mp4,true
+Tomato,Tomato,reference/tomato.json,videos/tomato.mp4,true
