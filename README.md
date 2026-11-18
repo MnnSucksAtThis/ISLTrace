@@ -32,7 +32,6 @@ The app stores local metadata only:
 
 The study logger does not save camera images, video, or landmark sequences. Data are stored in the application's private `research_data` directory. After finishing a participant session, the researcher can export from the home screen using **Researcher data export**, protected by a configurable local PIN. This export path does not require a participant sign-in, create a session, or delete existing data.
 
-The researcher export PIN is `1504`; change `researcher_export_pin` in `app/src/main/res/values/strings.xml` before building if required. The PIN is a basic access gate, not strong security. Keep the shared tablet under researcher supervision.
 
 The export contains `participants.csv`, `sessions.csv`, `attempts.csv`, `interactions.csv`, `sign_feedback.csv`, the vocabulary/label snapshot and a README. See [USER_STUDY_QUICK_START.md](USER_STUDY_QUICK_START.md) for the pilot procedure and data interpretation notes.
 
