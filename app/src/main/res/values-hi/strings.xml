@@ -31,7 +31,7 @@
     <!-- Word List Screen -->
     <!-- <string name="choose_sign_to_practise">अभ्यास के लिए कोई संकेत चुनें</string> -->
     <!-- <string name="participant_hand_info">प्रतिभागी · %1$s</string> -->
-    <!-- <string name="finish_participant_session">प्रतिभागी का सत्र समाप्त करें</string> -->
+    <string name="finish_participant_session">प्समाप्त करें</string>
     <string name="change_signing_hand">साइन करने वाला हाथ बदलें</string>
     <!-- <string name="sign_catalog_error_title">संकेतों की सूची में समस्या</string> -->
     <!-- <string name="sign_catalog_error_default">संकेतों की सूची लोड नहीं हो पाई।</string> -->
