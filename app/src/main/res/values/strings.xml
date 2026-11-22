@@ -1,14 +1,123 @@
 <resources>
     <string name="app_name">ISL Trace 15</string>
-    <string name="starting_camera">Starting camera...</string>
-    <string name="watch_sign">Watch</string>
-    <string name="skip">Skip</string>
+
+    <!-- General / Navigation / Actions -->
+    <string name="start">Start</string>
+    <string name="continue_action">Continue</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="words">Words</string>
     <string name="retry">Retry</string>
+    <string name="skip">Skip</string>
+    <string name="watch_sign">Watch</string>
     <string name="video">Video</string>
+    <string name="video_close">Back to practice</string>
     <string name="video_note">The real signer, shown like a mirror</string>
     <string name="video_speed">Speed: %1$s</string>
-    <string name="video_close">Back to practice</string>
     <string name="video_error">This video could not be played.</string>
-    <string name="words">Words</string>
+
+    <!-- Language & Settings -->
+    <string name="select_language">Select language</string>
+    <string name="language_preference_title">App language</string>
+    <string name="app_description">Practise Indian Sign Language\nat your own pace</string>
+
+    <!-- Hand Selection Screen -->
+    <string name="which_hand_question">Which hand do you sign with?</string>
+    <string name="hand_select_note">The reference signs will be mirrored for left-handed users.</string>
+    <string name="hand_select_instructions">Before each sign, lower your hands first. Then raise them towards the shadow guide to begin signing.</string>
+    <string name="right_handed">Right-handed</string>
+    <string name="left_handed">Left-handed</string>
+
+    <!-- Word List Screen -->
+    <string name="choose_sign_to_practise">Choose a sign to practise</string>
+    <string name="participant_hand_info">Participant · %1$s</string>
+    <string name="finish_participant_session">Finish participant session</string>
+    <string name="change_signing_hand">Change signing hand</string>
+    <string name="sign_catalog_error_title">Sign catalog error</string>
+    <string name="sign_catalog_error_default">The sign catalog could not be loaded.</string>
+    <string name="return_to_start">Return to start</string>
+    <string name="finish_practice_title">Finish practice?</string>
+    <string name="finish_practice_message">Finish this practice session and return to the start screen?</string>
+    <string name="continue_learning">Continue learning</string>
+    <string name="finish_session_action">Finish session</string>
+
+    <!-- Practice Screen -->
+    <string name="starting_camera">Starting camera...</string>
+    <string name="camera_permission_needed">Camera permission is needed to practise.</string>
+    <string name="hand_tracking_unavailable">Hand tracking could not start on this device.</string>
+    <string name="reference_not_found">Reference for \"%1$s\" not found.\nRun tools/extract_reference_landmarks.py and rebuild.</string>
+    <string name="watch_sign_first">Watch the sign first</string>
+    <string name="lower_hands_prompt">Lower your hands, then raise them onto the shadow</string>
+    <string name="your_turn_prompt">Your turn. Go at your own pace</string>
+    <string name="hold_this_pose">Hold this pose</string>
+    <string name="good_hold_still">Good! Hold still...</string>
+    <string name="raise_hands_onto_shadow">Raise your hands onto the shadow</string>
+    <string name="show_both_hands">Show both hands</string>
+    <string name="show_hand_format">Show your %1$s hand</string>
+    <string name="bring_hand_closer">Bring your %1$s closer to the camera</string>
+    <string name="move_hand_back">Move your %1$s back from the camera</string>
+    <string name="turn_hand_side">Turn your %1$s - show the %2$s</string>
+    <string name="move_hand_onto_shadow">Move your %1$s onto the shadow</string>
+    <string name="match_fingers_red_tips">Match the fingers with the red tips</string>
+    <string name="keep_hand_in_view">Keep your hand in view</string>
+    <string name="hold_still_to_finish">Hold still to finish</string>
+    <string name="keep_going_shadow_waits">Keep going. The shadow waits for you</string>
+
+    <!-- Hands & Sides -->
+    <string name="hand_label">hand</string>
+    <string name="left_hand_label">left hand</string>
+    <string name="right_hand_label">right hand</string>
+    <string name="left_slot">left</string>
+    <string name="right_slot">right</string>
+    <string name="side_palm_caps">PALM</string>
+    <string name="side_back_caps">BACK</string>
+    <string name="side_edge_caps">SIDE</string>
+    <string name="side_palm_phrase">PALM</string>
+    <string name="side_back_phrase">BACK of your hand</string>
+    <string name="side_edge_phrase">SIDE of your hand</string>
+    <string name="show_camera_side">Show the camera: %1$s</string>
+    <string name="hand_side_item">%1$s: %2$s</string>
+
+    <!-- Results & Tips -->
+    <string name="sign_recognised">Sign recognised</string>
+    <string name="sign_not_recognised">Sign not recognised</string>
+    <string name="recognition_unavailable">Recognition unavailable</string>
+    <string name="attempt_incomplete">Attempt incomplete</string>
+    <string name="excellent_sign_recognised">Excellent! Sign recognised.</string>
+    <string name="sign_recognised_exclamation">Sign recognised!</string>
+    <string name="excellent_technique">Excellent technique!</string>
+    <string name="keep_practising">Keep practising!</string>
+    <string name="technique_assessment_complete">Technique assessment complete</string>
+    <string name="technique_score_detail">TECHNIQUE %1$d/3\n%2$s Path movement    %3$s Hand shape    %4$s Palm/back</string>
+
+    <string name="result_msg_attempt_incomplete">This attempt was not completed. Watch the reference video and try again when you are ready.</string>
+    <string name="result_msg_accepted_perfect">Great work! Your path movement, hand shape and palm/back orientation matched the reference, and the app recognised %1$s.</string>
+    <string name="result_msg_accepted_technique_needed">The app recognised %1$s. To improve your technique: %2$s</string>
+    <string name="result_msg_rejected_perfect">Your path movement, hand shape and palm/back orientation matched the reference, but the app\'s recognition model did not recognise %1$s. Watch the reference video and try again.</string>
+    <string name="result_msg_rejected_technique_needed">The app\'s recognition model did not recognise %1$s. %2$s Watch the reference video and try again.</string>
+    <string name="result_msg_unavailable_not_loaded">The app\'s recognition model was unavailable for this attempt. Your technique checks are shown separately. %1$s</string>
+    <string name="result_msg_other_perfect">Your path movement, hand shape and palm/back orientation matched the reference, but the app\'s recognition model could not evaluate this attempt. Watch the reference video and try again.</string>
+    <string name="result_msg_other_technique_needed">The app\'s recognition model could not evaluate this attempt. %1$s Your technique result is shown separately.</string>
+
+    <string name="tip_none">Your technique checks matched the reference.</string>
+    <string name="tip_not_started">Start the movement when you are ready and follow the guide.</string>
+    <string name="tip_hand_lost">Keep your hand inside the camera frame throughout the sign.</string>
+    <string name="tip_move_more">Complete the full movement shown in the guide.</string>
+    <string name="tip_wrong_order">Start at the first position and follow the guide to the end.</string>
+    <string name="tip_wrong_side">Turn your hand to show the same side as the reference.</string>
+    <string name="tip_shape">Adjust your fingers to match the hand shape in the reference.</string>
+    <string name="tip_path">Follow the demonstrated movement path more closely.</string>
+    <string name="tip_not_recognized">The app\'s recognition model did not confirm this sign.</string>
+
+    <!-- Researcher Data Export Dialog -->
     <string name="researcher_export_pin">1504</string>
+    <string name="researcher_export_title">Researcher data export</string>
+    <string name="researcher_export_message">Enter the researcher PIN to export previously collected study data.</string>
+    <string name="researcher_pin_hint">Researcher PIN</string>
+    <string name="incorrect_pin">Incorrect PIN</string>
+    <string name="finish_session_before_export">Finish the participant session before exporting.</string>
+    <string name="no_research_data_to_export">There is no research data to export yet.</string>
+    <string name="export_cancelled">Export cancelled.</string>
+    <string name="research_data_exported">Research data exported. Existing study data remains on this device.</string>
+    <string name="export_failed">Export failed: %1$s</string>
 </resources>

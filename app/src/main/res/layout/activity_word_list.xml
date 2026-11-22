@@ -6,19 +6,35 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose a sign to practise"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/choose_sign_to_practise"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            style="@style/PracticeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvHandInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
-        android:text="Participant · Right-handed"
+        android:text="@string/participant_hand_info"
         android:textSize="14sp" />
 
     <ListView
@@ -31,12 +47,12 @@
         android:id="@+id/btnFinishSession"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish participant session" />
+        android:text="@string/finish_participant_session" />
 
     <Button
         android:id="@+id/btnChangeHand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Change signing hand" />
+        android:text="@string/change_signing_hand" />
 
 </LinearLayout>

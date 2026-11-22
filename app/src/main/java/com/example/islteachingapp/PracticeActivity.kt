@@ -129,7 +129,7 @@ class PracticeActivity : AppCompatActivity() {
 
     private val permissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-            if (granted) startCamera() else tvFeedback.text = "Camera permission is needed to practise."
+            if (granted) startCamera() else tvFeedback.text = getString(R.string.camera_permission_needed)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -210,8 +210,7 @@ class PracticeActivity : AppCompatActivity() {
         }
 
         if (reference == null) {
-            tvFeedback.text = "Reference for \"$word\" not found.\n" +
-                "Run tools/extract_reference_landmarks.py and rebuild."
+            tvFeedback.text = getString(R.string.reference_not_found, word)
             btnDemo.isEnabled = false
             btnSpeed.isEnabled = false
             btnRetry.isEnabled = false
@@ -223,7 +222,7 @@ class PracticeActivity : AppCompatActivity() {
             resetRequested = true
             resultCard.visibility = View.GONE
             progressBar.progress = 0
-            setFeedbackNow(LOWER_HANDS)
+            setFeedbackNow(getString(R.string.lower_hands_prompt))
         }
 
         btnDemo.setOnClickListener {
@@ -235,7 +234,7 @@ class PracticeActivity : AppCompatActivity() {
             restartWithDemo()          // show the sign at the new speed straight away
         }
 
-        setFeedbackNow(if (alreadyWatched) LOWER_HANDS else "Watch the sign first")
+        setFeedbackNow(if (alreadyWatched) getString(R.string.lower_hands_prompt) else getString(R.string.watch_sign_first))
         if (savedInstanceState?.getBoolean(KEY_VIDEO_OPEN) == true && videoPlayer != null) openVideo()
         // Loading the model can take seconds on a slow phone. Its own thread keeps the UI
         // responsive and lets the Watch demo, which doesn't need the model, start straight away.
@@ -301,7 +300,7 @@ class PracticeActivity : AppCompatActivity() {
         videoOpen = false
         resultCard.visibility = View.GONE
         progressBar.progress = 0
-        setFeedbackNow(LOWER_HANDS)
+        setFeedbackNow(getString(R.string.lower_hands_prompt))
     }
 
     // ------------------------------------------------------------------ setup
@@ -330,7 +329,7 @@ class PracticeActivity : AppCompatActivity() {
             if (isDestroyed) loaded.close() else handLandmarker = loaded
         } catch (e: Throwable) {
             Log.e(TAG, "Could not load the hand model", e)
-            ui { tvFeedback.text = "Hand tracking could not start on this device." }
+            ui { tvFeedback.text = getString(R.string.hand_tracking_unavailable) }
         }
     }
 
@@ -477,7 +476,7 @@ class PracticeActivity : AppCompatActivity() {
             StudyLogger.logInteraction(this, "REFERENCE_DEMO_STARTED", word, referenceReplays.toString(), researchTaskId)
             ui {
                 btnDemo.setText(R.string.skip)
-                setFeedbackNow("Watch the sign first")
+                setFeedbackNow(getString(R.string.watch_sign_first))
             }
             return
         }
@@ -491,7 +490,7 @@ class PracticeActivity : AppCompatActivity() {
                 HandGuideView.Scene(stage, session.target, { ref.sideAt(it, 0) }, live, null, 0f, false)
             )
             setSideText(ref, 0)
-            setFeedback(LOWER_HANDS)
+            setFeedback(getString(R.string.lower_hands_prompt))
             return
         }
 
@@ -511,7 +510,7 @@ class PracticeActivity : AppCompatActivity() {
             StudyLogger.logInteraction(this, "ATTEMPT_STARTED", word, activeAttemptNumber.toString(), researchTaskId)
             turnRows.clear()
             ui { progressBar.progress = 0 }
-            setFeedback(if (plan.heldPose) "Hold this pose" else "Your turn. Go at your own pace")
+            setFeedback(getString(if (plan.heldPose) R.string.hold_this_pose else R.string.your_turn_prompt))
             return
         }
 
@@ -523,22 +522,22 @@ class PracticeActivity : AppCompatActivity() {
     }
 
     private fun alignMessage(check: SignMatcher.PoseCheck): String {
-        if (check.aligned) return "Good! Hold still..."
-        if (check.hands.all { it.issue == SignMatcher.Issue.MISSING }) return "Raise your hands onto the shadow"
+        if (check.aligned) return getString(R.string.good_hold_still)
+        if (check.hands.all { it.issue == SignMatcher.Issue.MISSING }) return getString(R.string.raise_hands_onto_shadow)
         val hand = check.hands.minByOrNull { ISSUE_ORDER.indexOf(it.issue) } ?: return ""
         val name = if (check.hands.size > 1) {
-            if (hand.slot == HandGeometry.SLOT_LEFT) "left hand" else "right hand"
-        } else "hand"
+            getString(if (hand.slot == HandGeometry.SLOT_LEFT) R.string.left_hand_label else R.string.right_hand_label)
+        } else getString(R.string.hand_label)
         val ref = reference ?: return ""
         return when (hand.issue) {
             SignMatcher.Issue.MISSING ->
-                if (check.hands.size > 1) "Show both hands" else "Show your ${slotName(hand.slot)} hand"
-            SignMatcher.Issue.TOO_FAR -> "Bring your $name closer to the camera"
-            SignMatcher.Issue.TOO_CLOSE -> "Move your $name back from the camera"
-            SignMatcher.Issue.WRONG_SIDE -> "Turn your $name - show the ${sideWord(ref.sideAt(hand.slot, 0))}"
-            SignMatcher.Issue.OFF_POSITION -> "Move your $name onto the shadow"
-            SignMatcher.Issue.WRONG_SHAPE -> "Match the fingers with the red tips"
-            SignMatcher.Issue.NONE -> "Good! Hold still..."
+                if (check.hands.size > 1) getString(R.string.show_both_hands) else getString(R.string.show_hand_format, slotName(hand.slot))
+            SignMatcher.Issue.TOO_FAR -> getString(R.string.bring_hand_closer, name)
+            SignMatcher.Issue.TOO_CLOSE -> getString(R.string.move_hand_back, name)
+            SignMatcher.Issue.WRONG_SIDE -> getString(R.string.turn_hand_side, name, sideWord(ref.sideAt(hand.slot, 0)))
+            SignMatcher.Issue.OFF_POSITION -> getString(R.string.move_hand_onto_shadow, name)
+            SignMatcher.Issue.WRONG_SHAPE -> getString(R.string.match_fingers_red_tips)
+            SignMatcher.Issue.NONE -> getString(R.string.good_hold_still)
         }
     }
 
@@ -567,7 +566,7 @@ class PracticeActivity : AppCompatActivity() {
             ui {
                 progressBar.progress = 0
                 btnDemo.setText(R.string.watch_sign)
-                setFeedbackNow(LOWER_HANDS)
+                setFeedbackNow(getString(R.string.lower_hands_prompt))
             }
             return
         }
@@ -635,16 +634,16 @@ class PracticeActivity : AppCompatActivity() {
         idx: Int
     ): String {
         check.hands.firstOrNull { it.issue == SignMatcher.Issue.MISSING }?.let {
-            return "Keep your hand in view"
+            return getString(R.string.keep_hand_in_view)
         }
         check.hands.firstOrNull { it.issue == SignMatcher.Issue.WRONG_SIDE }?.let {
-            return "Turn your hand - show the ${sideWord(ref.sideAt(it.slot, idx))}"
+            return getString(R.string.turn_hand_side, getString(R.string.hand_label), sideWord(ref.sideAt(it.slot, idx)))
         }
         return when {
-            plan.heldPose -> "Hold this pose"
-            !turn.started -> "Your turn. Go at your own pace"
-            turn.reached >= turn.checkpointCount -> "Hold still to finish"
-            else -> "Keep going. The shadow waits for you"
+            plan.heldPose -> getString(R.string.hold_this_pose)
+            !turn.started -> getString(R.string.your_turn_prompt)
+            turn.reached >= turn.checkpointCount -> getString(R.string.hold_still_to_finish)
+            else -> getString(R.string.keep_going_shadow_waits)
         }
     }
 
@@ -756,10 +755,13 @@ class PracticeActivity : AppCompatActivity() {
             progressBar.progress = 1000
             tvStars.text = "★".repeat(evaluation.stars) + "☆".repeat(3 - evaluation.stars)
             tvResult.text = resultHeadline(evaluation)
-            tvStarDetail.text = "TECHNIQUE ${evaluation.stars}/3\n" +
-                "${mark(evaluation.pathOk)} Path movement    " +
-                "${mark(evaluation.shapeOk)} Hand shape    " +
-                "${mark(evaluation.sideOk)} Palm/back"
+            tvStarDetail.text = getString(
+                R.string.technique_score_detail,
+                evaluation.stars,
+                mark(evaluation.pathOk),
+                mark(evaluation.shapeOk),
+                mark(evaluation.sideOk)
+            )
             tvRecognition.text = recognitionLabel(evaluation.classifierStatus)
             tvRecognition.setTextColor(ContextCompat.getColor(this, when (evaluation.classifierStatus) {
                 "ACCEPTED" -> R.color.success
@@ -786,57 +788,57 @@ class PracticeActivity : AppCompatActivity() {
     )
 
     private fun recognitionLabel(status: String): String = when (status) {
-        "ACCEPTED" -> "Sign recognised"
-        "REJECTED" -> "Sign not recognised"
-        else -> "Recognition unavailable"
+        "ACCEPTED" -> getString(R.string.sign_recognised)
+        "REJECTED" -> getString(R.string.sign_not_recognised)
+        else -> getString(R.string.recognition_unavailable)
     }
 
     private fun resultHeadline(evaluation: TraceEvaluation): String = when {
-        !evaluation.finished -> "Attempt incomplete"
-        evaluation.classifierStatus == "ACCEPTED" && evaluation.stars == 3 -> "Excellent! Sign recognised."
-        evaluation.classifierStatus == "ACCEPTED" -> "Sign recognised!"
-        evaluation.stars == 3 -> "Excellent technique!"
-        evaluation.classifierStatus == "REJECTED" -> "Keep practising!"
-        else -> "Technique assessment complete"
+        !evaluation.finished -> getString(R.string.attempt_incomplete)
+        evaluation.classifierStatus == "ACCEPTED" && evaluation.stars == 3 -> getString(R.string.excellent_sign_recognised)
+        evaluation.classifierStatus == "ACCEPTED" -> getString(R.string.sign_recognised_exclamation)
+        evaluation.stars == 3 -> getString(R.string.excellent_technique)
+        evaluation.classifierStatus == "REJECTED" -> getString(R.string.keep_practising)
+        else -> getString(R.string.technique_assessment_complete)
     }
 
     private fun resultMessage(evaluation: TraceEvaluation): String {
         if (!evaluation.finished) {
-            return "This attempt was not completed. Watch the reference video and try again when you are ready."
+            return getString(R.string.result_msg_attempt_incomplete)
         }
         val correction = tipMessage(evaluation.tip)
         val allTechniqueChecksPassed = evaluation.stars == 3
         return when (evaluation.classifierStatus) {
             "ACCEPTED" -> if (allTechniqueChecksPassed) {
-                "Great work! Your path movement, hand shape and palm/back orientation matched the reference, and the app recognised $word."
+                getString(R.string.result_msg_accepted_perfect, word)
             } else {
-                "The app recognised $word. To improve your technique: $correction"
+                getString(R.string.result_msg_accepted_technique_needed, word, correction)
             }
             "REJECTED" -> if (allTechniqueChecksPassed) {
-                "Your path movement, hand shape and palm/back orientation matched the reference, but the app's recognition model did not recognise $word. Watch the reference video and try again."
+                getString(R.string.result_msg_rejected_perfect, word)
             } else {
-                "The app's recognition model did not recognise $word. $correction Watch the reference video and try again."
+                getString(R.string.result_msg_rejected_technique_needed, word, correction)
             }
             "ERROR", "UNAVAILABLE_NOT_LOADED" ->
-                "The app's recognition model was unavailable for this attempt. Your technique checks are shown separately. $correction"
+                getString(R.string.result_msg_unavailable_not_loaded, correction)
             else -> if (allTechniqueChecksPassed) {
-                "Your path movement, hand shape and palm/back orientation matched the reference, but the app's recognition model could not evaluate this attempt. Watch the reference video and try again."
+                getString(R.string.result_msg_other_perfect, word)
             } else {
-                "The app's recognition model could not evaluate this attempt. $correction Your technique result is shown separately."
+                getString(R.string.result_msg_other_technique_needed, correction)
             }
         }
     }
 
     private fun tipMessage(tip: TraceScorer.Tip): String = when (tip) {
-        TraceScorer.Tip.NONE -> "Your technique checks matched the reference."
-        TraceScorer.Tip.NOT_STARTED -> "Start the movement when you are ready and follow the guide."
-        TraceScorer.Tip.HAND_LOST -> "Keep your hand inside the camera frame throughout the sign."
-        TraceScorer.Tip.MOVE_MORE -> "Complete the full movement shown in the guide."
-        TraceScorer.Tip.WRONG_ORDER -> "Start at the first position and follow the guide to the end."
-        TraceScorer.Tip.WRONG_SIDE -> "Turn your hand to show the same side as the reference."
-        TraceScorer.Tip.SHAPE -> "Adjust your fingers to match the hand shape in the reference."
-        TraceScorer.Tip.PATH -> "Follow the demonstrated movement path more closely."
-        TraceScorer.Tip.NOT_RECOGNIZED -> "The app's recognition model did not confirm this sign."
+        TraceScorer.Tip.NONE -> getString(R.string.tip_none)
+        TraceScorer.Tip.NOT_STARTED -> getString(R.string.tip_not_started)
+        TraceScorer.Tip.HAND_LOST -> getString(R.string.tip_hand_lost)
+        TraceScorer.Tip.MOVE_MORE -> getString(R.string.tip_move_more)
+        TraceScorer.Tip.WRONG_ORDER -> getString(R.string.tip_wrong_order)
+        TraceScorer.Tip.WRONG_SIDE -> getString(R.string.tip_wrong_side)
+        TraceScorer.Tip.SHAPE -> getString(R.string.tip_shape)
+        TraceScorer.Tip.PATH -> getString(R.string.tip_path)
+        TraceScorer.Tip.NOT_RECOGNIZED -> getString(R.string.tip_not_recognized)
     }
 
     private fun requestExitToWords() {
@@ -868,7 +870,7 @@ class PracticeActivity : AppCompatActivity() {
         demoRequested = true
         resultCard.visibility = View.GONE
         progressBar.progress = 0
-        setFeedbackNow("Watch the sign first")
+        setFeedbackNow(getString(R.string.watch_sign_first))
     }
 
     private fun nextSpeed() {
@@ -885,27 +887,27 @@ class PracticeActivity : AppCompatActivity() {
         btnVideoSpeed.text = getString(R.string.video_speed, label)
     }
 
-    private fun slotName(slot: Int) = if (slot == HandGeometry.SLOT_LEFT) "left" else "right"
+    private fun slotName(slot: Int) = if (slot == HandGeometry.SLOT_LEFT) getString(R.string.left_slot) else getString(R.string.right_slot)
 
     private fun sideWord(side: HandSide) = when (side) {
-        HandSide.PALM -> "PALM"
-        HandSide.BACK -> "BACK of your hand"
-        HandSide.EDGE -> "SIDE of your hand"
+        HandSide.PALM -> getString(R.string.side_palm_phrase)
+        HandSide.BACK -> getString(R.string.side_back_phrase)
+        HandSide.EDGE -> getString(R.string.side_edge_phrase)
     }
 
     /** Spells out, in words, which side of each hand should face the camera. */
     private fun setSideText(ref: ReferenceSign, idx: Int) {
         val present = (0..1).filter { HandGeometry.present(ref.frames[idx], it) }
         val text = if (present.size == 1) {
-            "Show the camera: ${sideWord(ref.sideAt(present[0], idx))}"
+            getString(R.string.show_camera_side, sideWord(ref.sideAt(present[0], idx)))
         } else {
             present.joinToString("   |   ") { s ->
                 val label = when (ref.sideAt(s, idx)) {
-                    HandSide.PALM -> "PALM"
-                    HandSide.BACK -> "BACK"
-                    HandSide.EDGE -> "SIDE"
+                    HandSide.PALM -> getString(R.string.side_palm_caps)
+                    HandSide.BACK -> getString(R.string.side_back_caps)
+                    HandSide.EDGE -> getString(R.string.side_edge_caps)
                 }
-                "${slotName(s).replaceFirstChar { it.uppercase() }}: $label"
+                getString(R.string.hand_side_item, slotName(s).replaceFirstChar { it.uppercase() }, label)
             }
         }
         if (text == lastSideText) return
@@ -1006,7 +1008,6 @@ class PracticeActivity : AppCompatActivity() {
         private val SPEEDS = floatArrayOf(0.5f, 0.75f, 1.0f)
         private const val DEFAULT_SPEED = 0.5f
         private const val DEMO_END_HOLD_MS = 400L
-        private const val LOWER_HANDS = "Lower your hands, then raise them onto the shadow"
         private val EMPTY_ROW = FloatArray(HandGeometry.FRAME_FLOATS)
 
         private const val KEY_TASK_ID = "research_task_id"

@@ -3,51 +3,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:orientation="horizontal"
+    android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Which hand do you sign with?"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="The reference signs will be mirrored for left-handed users."
-        android:textSize="14sp" />
-
+    <!-- Left Column: Language Selection -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="horizontal">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnRight"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="Right-handed"
-            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tvLanguageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_language"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnLeft"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:text="Left-handed"
-            android:textSize="20sp" />
+        <RadioGroup
+            android:id="@+id/rgLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
+            <RadioButton
+                android:id="@+id/rbEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbHindi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="हिन्दी"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbMarathi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="मराठी"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbKonkani"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="कोंकणी"
+                android:textSize="16sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/muted" />
+
+    <!-- Right Column: Hand Selection -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/which_hand_question"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/hand_select_note"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRight"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="@string/right_handed"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnLeft"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/left_handed"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

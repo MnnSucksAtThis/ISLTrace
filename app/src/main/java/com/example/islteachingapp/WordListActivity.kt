@@ -18,16 +18,20 @@ class WordListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_word_list)
 
         val leftHanded = intent.getBooleanExtra(Extras.LEFT_HANDED, false)
-        findViewById<TextView>(R.id.tvHandInfo).text =
-            if (leftHanded) "Left-handed" else "Right-handed"
+        val handLabel = getString(if (leftHanded) R.string.left_handed else R.string.right_handed)
+        findViewById<TextView>(R.id.tvHandInfo).text = getString(R.string.participant_hand_info, handLabel)
+
+        findViewById<Button>(R.id.btnSettings).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         val signs = try {
             SignCatalog.load(this)
         } catch (e: Exception) {
             AlertDialog.Builder(this)
-                .setTitle("Sign catalog error")
-                .setMessage(e.message ?: "The sign catalog could not be loaded.")
-                .setPositiveButton("Return to start") { _, _ -> finish() }
+                .setTitle(R.string.sign_catalog_error_title)
+                .setMessage(e.message ?: getString(R.string.sign_catalog_error_default))
+                .setPositiveButton(R.string.return_to_start) { _, _ -> finish() }
                 .setCancelable(false)
                 .show()
             emptyList()
@@ -55,10 +59,10 @@ class WordListActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnFinishSession).setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Finish practice?")
-                .setMessage("Finish this practice session and return to the start screen?")
-                .setNegativeButton("Continue learning", null)
-                .setPositiveButton("Finish session") { _, _ ->
+                .setTitle(R.string.finish_practice_title)
+                .setMessage(R.string.finish_practice_message)
+                .setNegativeButton(R.string.continue_learning, null)
+                .setPositiveButton(R.string.finish_session_action) { _, _ ->
                     StudyLogger.endSession(this, "COMPLETED")
                     val home = Intent(this, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

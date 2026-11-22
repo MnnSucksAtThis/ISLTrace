@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.CreateDocument("application/zip")
     ) { uri ->
         if (uri == null) {
-            Toast.makeText(this, "Export cancelled.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.export_cancelled, Toast.LENGTH_LONG).show()
         } else {
             try {
                 StudyLogger.exportZip(this, uri)
-                Toast.makeText(this, "Research data exported. Existing study data remains on this device.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, R.string.research_data_exported, Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
-                Toast.makeText(this, "Export failed: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.export_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -53,31 +53,31 @@ class MainActivity : AppCompatActivity() {
     /** Hidden researcher export; it does not create or overwrite a participant session. */
     private fun showResearcherExportDialog() {
         val pinInput = EditText(this).apply {
-            hint = "Researcher PIN"
+            hint = getString(R.string.researcher_pin_hint)
             setSingleLine(true)
             inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
             filters = arrayOf(InputFilter.LengthFilter(12))
         }
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Researcher data export")
-            .setMessage("Enter the researcher PIN to export previously collected study data.")
+            .setTitle(R.string.researcher_export_title)
+            .setMessage(R.string.researcher_export_message)
             .setView(pinInput)
-            .setNegativeButton("Cancel", null)
-            .setPositiveButton("Continue", null)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.continue_action, null)
             .create()
         dialog.setOnShowListener {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                 val expectedPin = getString(R.string.researcher_export_pin)
                 if (pinInput.text.toString() != expectedPin) {
-                    pinInput.error = "Incorrect PIN"
+                    pinInput.error = getString(R.string.incorrect_pin)
                     return@setOnClickListener
                 }
                 if (StudyLogger.currentSession(this) != null) {
-                    Toast.makeText(this, "Finish the participant session before exporting.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, R.string.finish_session_before_export, Toast.LENGTH_LONG).show()
                     return@setOnClickListener
                 }
                 if (!StudyLogger.hasResearchData(this)) {
-                    Toast.makeText(this, "There is no research data to export yet.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, R.string.no_research_data_to_export, Toast.LENGTH_LONG).show()
                     dialog.dismiss()
                     return@setOnClickListener
                 }
@@ -88,5 +88,4 @@ class MainActivity : AppCompatActivity() {
         }
         dialog.show()
     }
-
 }
