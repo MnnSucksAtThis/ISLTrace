@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="panel">#CC101418</color>
+    <color name="panel_solid">#F0101418</color>
+    <color name="muted">#FFB0B8C0</color>
+    <color name="star">#FFFFC93C</color>
+    <color name="success">#FF2E7D32</color>
+    <color name="warning">#FFE65100</color>
+</resources>

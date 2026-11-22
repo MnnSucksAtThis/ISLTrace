@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ISL Trace 15</string>
+    <string name="starting_camera">camera शुरू हो रहा है...</string>
+    <string name="watch_sign">Watch</string>
+    <string name="skip">अगला</string>
+    <string name="retry">फिर से कोशिश करें</string>
+    <string name="video">वीडियो</string>
+    <string name="video_note">असली हस्ताक्षरकर्ता, जो दर्पण की तरह दिखता है</string>
+    <string name="video_speed">Speed: %1$s</string>
+    <string name="video_close">वापस अभ्यास पर</string>
+    <string name="video_error">यह वीडियो नहीं चल सका।</string>
+    <string name="words">शब्द</string>
+    <string name="researcher_export_pin">1504</string>
+</resources>
