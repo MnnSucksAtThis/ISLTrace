@@ -1,3 +1,108 @@
 <resources>
-    <!-- Marathi translations will be supplied by the developer. Falling back to default strings.xml until supplied. -->
+    <string name="app_name">ISL ट्रेस 15</string>
+
+    <!-- General / Navigation / Actions -->
+    <string name="start">सुरू करा</string>
+    <string name="continue_action">पुढे सुरू ठेवा</string>
+    <string name="cancel">रद्द करा</string>
+    <string name="settings">सेटिंग्ज</string>
+    <string name="words">शब्द</string>
+    <string name="retry">पुन्हा प्रयत्न करा</string>
+    <string name="skip">वगळा</string>
+    <string name="watch_sign">पाहा</string>
+    <string name="video">व्हिडिओ</string>
+    <string name="video_close">सरावाकडे परत जा</string>
+    <string name="video_note">खरी व्यक्ती आरशात दिसल्याप्रमाणे दाखवली आहे</string>
+    <string name="video_speed">व्हिडिओचा वेग: %1$s</string>
+    <string name="video_error">हा व्हिडिओ प्ले होऊ शकला नाही.</string>
+
+    <!-- Language & Settings -->
+    <string name="select_language">भाषा निवडा</string>
+    <string name="language_preference_title">ॲपची भाषा</string>
+    <string name="app_description">आपल्या सोयीनुसार\nभारतीय सांकेतिक भाषा शिका</string>
+
+    <!-- Hand Selection Screen -->
+    <string name="which_hand_question">तुम्ही कोणत्या हाताने साइन करता?</string>
+    <string name="hand_select_note">तुम्ही डाव्या हाताने साइन करत असल्यास, दाखवलेले संकेत त्यानुसार आरशातील प्रतिबिंबाप्रमाणे दिसतील.</string>
+    <string name="hand_select_instructions">प्रत्येक संकेत सुरू करण्यापूर्वी तुमचे हात खाली ठेवा. त्यानंतर साइन करण्यासाठी हात वर उचलून स्क्रीनवरील हातांच्या सावलीशी जुळवा.</string>
+    <string name="right_handed">उजव्या हाताने साइन करतो/करते</string>
+    <string name="left_handed">डाव्या हाताने साइन करतो/करते</string>
+
+    <!-- Word List Screen -->
+    <string name="finish_participant_session">सहभागीचे सत्र संपवा</string>
+    <string name="change_signing_hand">साइन करण्यासाठीचा हात बदला</string>
+    <string name="return_to_start">सुरुवातीच्या स्क्रीनवर परत जा</string>
+    <string name="finish_practice_title">सराव संपवायचा आहे का?</string>
+    <string name="finish_practice_message">तुम्हाला हा सराव संपवून सुरुवातीच्या स्क्रीनवर परत जायचे आहे का?</string>
+    <string name="continue_learning">शिकणे सुरू ठेवा</string>
+    <string name="finish_session_action">सत्र संपवा</string>
+
+    <!-- Practice Screen -->
+    <string name="starting_camera">कॅमेरा सुरू होत आहे...</string>
+    <string name="camera_permission_needed">सराव करण्यासाठी कॅमेऱ्याची परवानगी आवश्यक आहे.</string>
+    <string name="hand_tracking_unavailable">या डिव्हाइसवर हातांचा मागोवा घेता आला नाही.</string>
+    <string name="reference_not_found">\"%1$s\" साठी संदर्भ सापडला नाही.\ntools/extract_reference_landmarks.py चालवून ॲप पुन्हा बिल्ड करा.</string>
+    <string name="watch_sign_first">आधी या संकेताचा व्हिडिओ पाहा</string>
+    <string name="lower_hands_prompt">आधी हात खाली करा, मग ते सावलीवर येतील असे वर उचला</string>
+    <string name="your_turn_prompt">आता तुमची पाळी आहे. निवांतपणे साइन करा.</string>
+    <string name="hold_this_pose">हीच स्थिती कायम ठेवा</string>
+    <string name="good_hold_still">छान! थोडा वेळ असेच स्थिर राहा...</string>
+    <string name="raise_hands_onto_shadow">हात वर उचलून सावलीशी जुळवा</string>
+    <string name="show_both_hands">दोन्ही हात दाखवा</string>
+    <string name="show_hand_format">तुमचा %1$s हात दाखवा</string>
+    <string name="bring_hand_closer">तुमचा %1$s हात कॅमेऱ्याच्या थोडा जवळ आणा</string>
+    <string name="move_hand_back">तुमचा %1$s हात कॅमेऱ्यापासून थोडा दूर न्या</string>
+    <string name="turn_hand_side">तुमचा %1$s हात फिरवा आणि त्याची %2$s बाजू दाखवा</string>
+    <string name="move_hand_onto_shadow">तुमचा %1$s हात सावलीवर आणा</string>
+    <string name="match_fingers_red_tips">तुमची बोटे लाल खुणांशी जुळवा</string>
+    <string name="keep_hand_in_view">तुमचा हात कॅमेऱ्याच्या चौकटीत ठेवा</string>
+    <string name="hold_still_to_finish">पूर्ण करण्यासाठी हात स्थिर ठेवा</string>
+    <string name="keep_going_shadow_waits">सुरू ठेवा. सावली तुमची वाट पाहत आहे.</string>
+
+    <!-- Hands & Sides -->
+    <string name="hand_label">हात</string>
+    <string name="left_hand_label">डावा हात</string>
+    <string name="right_hand_label">उजवा हात</string>
+    <string name="left_slot">डावा</string>
+    <string name="right_slot">उजवा</string>
+    <string name="side_palm_caps">तळहात</string>
+    <string name="side_back_caps">हाताची मागची बाजू</string>
+    <string name="side_edge_caps">हाताची कड</string>
+    <string name="side_palm_phrase">तळहात</string>
+    <string name="side_back_phrase">तुमच्या हाताची मागची बाजू</string>
+    <string name="side_edge_phrase">तुमच्या हाताची कड</string>
+    <string name="show_camera_side">कॅमेऱ्याकडे ही बाजू दाखवा: %1$s</string>
+    <string name="hand_side_item">%1$s: %2$s</string>
+
+    <!-- Results & Tips -->
+    <string name="sign_recognised">संकेत ओळखला गेला</string>
+    <string name="sign_not_recognised">संकेत ओळखता आला नाही</string>
+    <string name="recognition_unavailable">संकेत ओळखण्याची सुविधा उपलब्ध नाही</string>
+    <string name="attempt_incomplete">प्रयत्न पूर्ण झाला नाही</string>
+    <string name="excellent_sign_recognised">उत्तम! संकेत ओळखला गेला.</string>
+    <string name="sign_recognised_exclamation">संकेत ओळखला गेला!</string>
+    <string name="excellent_technique">उत्तम पद्धत!</string>
+    <string name="keep_practising">सराव सुरू ठेवा!</string>
+    <string name="technique_assessment_complete">साइन करण्याच्या पद्धतीचे मूल्यांकन पूर्ण झाले</string>
+    <string name="technique_score_detail">साइन करण्याची पद्धत %1$d/3\n%2$s हाताची हालचाल    %3$s हाताचा आकार    %4$s तळहात/हाताची मागची बाजू</string>
+
+    <string name="result_msg_attempt_incomplete">हा प्रयत्न पूर्ण झाला नाही. संदर्भ व्हिडिओ पाहा आणि तयार झाल्यावर पुन्हा प्रयत्न करा.</string>
+    <string name="result_msg_accepted_perfect">खूप छान! तुमच्या हाताची हालचाल, हाताचा आकार आणि तळहात किंवा हाताच्या मागच्या बाजूची दिशा संदर्भाशी जुळली आहे. ॲपने %1$s ओळखला.</string>
+    <string name="result_msg_accepted_technique_needed">ॲपने %1$s ओळखला. तुमची साइन करण्याची पद्धत सुधारण्यासाठी: %2$s</string>
+    <string name="result_msg_rejected_perfect">तुमच्या हाताची हालचाल, हाताचा आकार आणि तळहात किंवा हाताच्या मागच्या बाजूची दिशा संदर्भाशी जुळली आहे, पण ॲपच्या ओळख प्रणालीला %1$s ओळखता आला नाही. संदर्भ व्हिडिओ पाहा आणि पुन्हा प्रयत्न करा.</string>
+    <string name="result_msg_rejected_technique_needed">ॲपच्या ओळख प्रणालीला %1$s ओळखता आला नाही. %2$s संदर्भ व्हिडिओ पाहा आणि पुन्हा प्रयत्न करा.</string>
+    <string name="result_msg_unavailable_not_loaded">या प्रयत्नादरम्यान ॲपची ओळख प्रणाली उपलब्ध नव्हती. तुमच्या साइन करण्याच्या पद्धतीचे मूल्यांकन स्वतंत्रपणे दाखवले आहे. %1$s</string>
+    <string name="result_msg_other_perfect">तुमच्या हाताची हालचाल, हाताचा आकार आणि तळहात किंवा हाताच्या मागच्या बाजूची दिशा संदर्भाशी जुळली आहे, पण ॲपच्या ओळख प्रणालीला या प्रयत्नाचे मूल्यांकन करता आले नाही. संदर्भ व्हिडिओ पाहा आणि पुन्हा प्रयत्न करा.</string>
+    <string name="result_msg_other_technique_needed">ॲपच्या ओळख प्रणालीला या प्रयत्नाचे मूल्यांकन करता आले नाही. %1$s तुमच्या साइन करण्याच्या पद्धतीचा निकाल स्वतंत्रपणे दाखवला आहे.</string>
+
+    <string name="tip_none">तुमची साइन करण्याची पद्धत संदर्भाशी जुळली आहे.</string>
+    <string name="tip_not_started">तयार झाल्यावर हातांची हालचाल सुरू करा आणि स्क्रीनवरील मार्गदर्शनाचे अनुसरण करा.</string>
+    <string name="tip_hand_lost">साइन करताना तुमचा हात संपूर्ण वेळ कॅमेऱ्याच्या चौकटीत ठेवा.</string>
+    <string name="tip_move_more">मार्गदर्शनात दाखवल्याप्रमाणे हाताची संपूर्ण हालचाल करा.</string>
+    <string name="tip_wrong_order">पहिल्या स्थितीपासून सुरुवात करा आणि दाखवलेल्या क्रमाने पुढे जा.</string>
+    <string name="tip_wrong_side">संदर्भात दाखवल्याप्रमाणे हाताची तीच बाजू दिसेल अशा प्रकारे हात फिरवा.</string>
+    <string name="tip_shape">संदर्भात दाखवल्याप्रमाणे हाताचा आकार येण्यासाठी बोटांची स्थिती बदला.</string>
+    <string name="tip_path">दाखवलेल्या मार्गानुसार हाताची हालचाल अधिक अचूकपणे करा.</string>
+    <string name="tip_not_recognized">ॲपच्या ओळख प्रणालीला या संकेताची खात्री करता आली नाही.</string>
+
 </resources>
