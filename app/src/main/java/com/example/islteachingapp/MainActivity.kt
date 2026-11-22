@@ -1,5 +1,6 @@
 package com.example.islteachingapp
 
+import java.util.Locale
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
