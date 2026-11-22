@@ -1,78 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="horizontal"
-    android:padding="24dp">
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
-    <!-- Left Column: Language Selection -->
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <TextView
-            android:id="@+id/tvLanguageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_language"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rgLanguage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rbEnglish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="English"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:id="@+id/rbHindi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="हिन्दी"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:id="@+id/rbMarathi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="मराठी"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:id="@+id/rbKonkani"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="कोंकणी"
-                android:textSize="16sp" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/muted" />
-
-    <!-- Right Column: Hand Selection -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1.2"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
+        <!-- Upper Half: Hand Selection -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,21 +23,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
             android:text="@string/hand_select_note"
             android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnRight"
                 android:layout_width="0dp"
-                android:layout_height="64dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
                 android:text="@string/right_handed"
                 android:textSize="16sp" />
@@ -105,12 +48,84 @@
             <Button
                 android:id="@+id/btnLeft"
                 android:layout_width="0dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="8dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="1"
                 android:text="@string/left_handed"
                 android:textSize="16sp" />
         </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@color/muted" />
+
+        <!-- Lower Half: Language Selection (2x2 Array Matching Hand Select Buttons) -->
+        <TextView
+            android:id="@+id/tvLanguageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_language"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Row 1: English & Hindi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnLangEnglish"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="English"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnLangHindi"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="हिन्दी"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Row 2: Marathi & Konkani -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnLangMarathi"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="मराठी"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnLangKonkani"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="कोंकणी"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
