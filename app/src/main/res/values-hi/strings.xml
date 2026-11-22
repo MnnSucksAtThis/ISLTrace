@@ -1,14 +1,123 @@
 <resources>
-    <string name="app_name">ISL Trace 15</string>
-    <string name="starting_camera">camera शुरू हो रहा है...</string>
-    <string name="watch_sign">Watch</string>
-    <string name="skip">अगला</string>
-    <string name="retry">फिर से कोशिश करें</string>
-    <string name="video">वीडियो</string>
-    <string name="video_note">असली हस्ताक्षरकर्ता, जो दर्पण की तरह दिखता है</string>
-    <string name="video_speed">Speed: %1$s</string>
-    <string name="video_close">वापस अभ्यास पर</string>
-    <string name="video_error">यह वीडियो नहीं चल सका।</string>
+    <string name="app_name">ISL trace 15</string>
+
+    <!-- General / Navigation / Actions -->
+    <string name="start">शुरू करें</string>
+    <string name="continue_action">जारी रखें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="settings">settings</string>
     <string name="words">शब्द</string>
+    <string name="retry">फिर से कोशिश करें</string>
+    <string name="skip">छोड़ें</string>
+    <string name="watch_sign">देखें</string>
+    <string name="video">वीडियो</string>
+    <string name="video_close">अभ्यास पर वापस जाएँ</string>
+    <string name="video_note">असली व्यक्ति को ऐसे दिखाया गया है जैसे आप आईने में देख रहे हों</string>
+    <string name="video_speed">वीडियो की गति: %1$s</string>
+    <string name="video_error">यह वीडियो नहीं चल पाया।</string>
+
+    <!-- Language & Settings -->
+    <string name="select_language">भाषा चुनें</string>
+    <string name="language_preference_title">ऐप की भाषा</string>
+    <string name="app_description">अपनी सुविधा के अनुसार\nभारतीय सांकेतिक भाषा सीखें</string>
+
+    <!-- Hand Selection Screen -->
+    <string name="which_hand_question">आप किस हाथ से साइन करते हैं?</string>
+    <string name="hand_select_note">अगर आप बाएँ हाथ से साइन करते हैं, तो आपको दिखाए जाने वाले संकेत उसी के अनुसार उलटे दिखाई देंगे।</string>
+    <string name="hand_select_instructions">हर संकेत शुरू करने से पहले अपने हाथ नीचे रखें। फिर साइन करने के लिए उन्हें उठाकर स्क्रीन पर दिखाए गए हाथों की परछाई से मिलाएँ।</string>
+    <string name="right_handed">दाएँ हाथ से साइन करता/करती हूँ</string>
+    <string name="left_handed">बाएँ हाथ से साइन करता/करती हूँ</string>
+
+    <!-- Word List Screen -->
+    <string name="choose_sign_to_practise">अभ्यास के लिए कोई संकेत चुनें</string>
+    <string name="participant_hand_info">प्रतिभागी · %1$s</string>
+    <string name="finish_participant_session">प्रतिभागी का सत्र समाप्त करें</string>
+    <string name="change_signing_hand">साइन करने वाला हाथ बदलें</string>
+    <string name="sign_catalog_error_title">संकेतों की सूची में समस्या</string>
+    <string name="sign_catalog_error_default">संकेतों की सूची लोड नहीं हो पाई।</string>
+    <string name="return_to_start">शुरुआत पर वापस जाएँ</string>
+    <string name="finish_practice_title">अभ्यास समाप्त करें?</string>
+    <string name="finish_practice_message">क्या आप यह अभ्यास सत्र समाप्त करके शुरुआती स्क्रीन पर वापस जाना चाहते हैं?</string>
+    <string name="continue_learning">सीखना जारी रखें</string>
+    <string name="finish_session_action">सत्र समाप्त करें</string>
+
+    <!-- Practice Screen -->
+    <string name="starting_camera">Camera शुरू हो रहा है...</string>
+    <string name="camera_permission_needed">अभ्यास करने के लिए Camera की अनुमति देना ज़रूरी है।</string>
+    <string name="hand_tracking_unavailable">इस डिवाइस पर हाथों को ट्रैक नहीं किया जा सका।</string>
+    <string name="reference_not_found">\"%1$s\" के लिए संदर्भ नहीं मिला।\ntools/extract_reference_landmarks.py चलाकर ऐप को दोबारा बिल्ड करें।</string>
+    <string name="watch_sign_first">पहले इस संकेत का वीडियो देखें</string>
+    <string name="lower_hands_prompt">पहले हाथ नीचे करें, फिर उन्हें परछाई के ऊपर उठाएँ</string>
+    <string name="your_turn_prompt">अब आपकी बारी है। आराम से साइन करें।</string>
+    <string name="hold_this_pose">इसी स्थिति में रहें</string>
+    <string name="good_hold_still">बहुत अच्छा! थोड़ी देर ऐसे ही रहें...</string>
+    <string name="raise_hands_onto_shadow">अपने हाथ उठाकर परछाई से मिलाएँ</string>
+    <string name="show_both_hands">दोनों हाथ दिखाएँ</string>
+    <string name="show_hand_format">अपना %1$s हाथ दिखाएँ</string>
+    <string name="bring_hand_closer">अपना %1$s हाथ Camera के थोड़ा पास लाएँ</string>
+    <string name="move_hand_back">अपना %1$s हाथ Camera से थोड़ा दूर ले जाएँ</string>
+    <string name="turn_hand_side">अपने %1$s हाथ को घुमाएँ और उसका %2$s हिस्सा दिखाएँ</string>
+    <string name="move_hand_onto_shadow">अपने %1$s हाथ को परछाई के ऊपर लाएँ</string>
+    <string name="match_fingers_red_tips">अपनी उँगलियों को लाल निशानों से मिलाएँ</string>
+    <string name="keep_hand_in_view">अपना हाथ Camera के सामने बनाए रखें</string>
+    <string name="hold_still_to_finish">पूरा करने के लिए हाथ को स्थिर रखें</string>
+    <string name="keep_going_shadow_waits">जारी रखें। परछाई आपका इंतज़ार कर रही है।</string>
+
+    <!-- Hands & Sides -->
+    <string name="hand_label">हाथ</string>
+    <string name="left_hand_label">बायाँ हाथ</string>
+    <string name="right_hand_label">दायाँ हाथ</string>
+    <string name="left_slot">बायाँ</string>
+    <string name="right_slot">दायाँ</string>
+    <string name="side_palm_caps">हथेली</string>
+    <string name="side_back_caps">हाथ का पिछला हिस्सा</string>
+    <string name="side_edge_caps">हाथ का किनारा</string>
+    <string name="side_palm_phrase">हथेली</string>
+    <string name="side_back_phrase">अपने हाथ का पिछला हिस्सा</string>
+    <string name="side_edge_phrase">अपने हाथ का किनारा</string>
+    <string name="show_camera_side">Camera की तरफ दिखाएँ: %1$s</string>
+    <string name="hand_side_item">%1$s: %2$s</string>
+
+    <!-- Results & Tips -->
+    <string name="sign_recognised">संकेत पहचान लिया गया</string>
+    <string name="sign_not_recognised">संकेत पहचाना नहीं गया</string>
+    <string name="recognition_unavailable">संकेत पहचानने की सुविधा उपलब्ध नहीं है</string>
+    <string name="attempt_incomplete">अभ्यास पूरा नहीं हुआ</string>
+    <string name="excellent_sign_recognised">बहुत बढ़िया! आपका संकेत पहचान लिया गया।</string>
+    <string name="sign_recognised_exclamation">संकेत पहचान लिया गया!</string>
+    <string name="excellent_technique">बहुत बढ़िया तरीका!</string>
+    <string name="keep_practising">अभ्यास करते रहें!</string>
+    <string name="technique_assessment_complete">आपके साइन करने के तरीके का मूल्यांकन पूरा हुआ</string>
+    <string name="technique_score_detail">साइन करने का तरीका %1$d/3\n%2$s हाथ की गति    %3$s हाथ का आकार    %4$s हथेली या हाथ का पिछला हिस्सा</string>
+
+    <string name="result_msg_attempt_incomplete">यह प्रयास पूरा नहीं हुआ। संदर्भ वीडियो देखें और जब तैयार हों, तब दोबारा कोशिश करें।</string>
+    <string name="result_msg_accepted_perfect">बहुत अच्छा! आपके हाथ की गति, हाथ का आकार और हथेली या हाथ के पिछले हिस्से की दिशा संदर्भ से मेल खाती है। ऐप ने %1$s को पहचान लिया।</string>
+    <string name="result_msg_accepted_technique_needed">ऐप ने %1$s को पहचान लिया। अपने साइन करने के तरीके को बेहतर बनाने के लिए: %2$s</string>
+    <string name="result_msg_rejected_perfect">आपके हाथ की गति, हाथ का आकार और हथेली या हाथ के पिछले हिस्से की दिशा संदर्भ से मेल खाती है, लेकिन ऐप का पहचान मॉडल %1$s को पहचान नहीं पाया। संदर्भ वीडियो देखें और दोबारा कोशिश करें।</string>
+    <string name="result_msg_rejected_technique_needed">ऐप का पहचान मॉडल %1$s को पहचान नहीं पाया। %2$s संदर्भ वीडियो देखें और दोबारा कोशिश करें।</string>
+    <string name="result_msg_unavailable_not_loaded">इस प्रयास के दौरान ऐप का पहचान मॉडल उपलब्ध नहीं था। आपके साइन करने के तरीके का मूल्यांकन अलग से दिखाया गया है। %1$s</string>
+    <string name="result_msg_other_perfect">आपके हाथ की गति, हाथ का आकार और हथेली या हाथ के पिछले हिस्से की दिशा संदर्भ से मेल खाती है, लेकिन ऐप का पहचान मॉडल इस प्रयास का मूल्यांकन नहीं कर पाया। संदर्भ वीडियो देखें और दोबारा कोशिश करें।</string>
+    <string name="result_msg_other_technique_needed">ऐप का पहचान मॉडल इस प्रयास का मूल्यांकन नहीं कर पाया। %1$s आपके साइन करने के तरीके का परिणाम अलग से दिखाया गया है।</string>
+
+    <string name="tip_none">आपका साइन करने का तरीका संदर्भ से मेल खाता है।</string>
+    <string name="tip_not_started">जब तैयार हों, तब संकेत करना शुरू करें और स्क्रीन पर दिखाए गए तरीके का पालन करें।</string>
+    <string name="tip_hand_lost">साइन करते समय अपना हाथ हमेशा Camera की स्क्रीन में रखें।</string>
+    <string name="tip_move_more">दिखाए गए तरीके के अनुसार हाथ को पूरा घुमाएँ।</string>
+    <string name="tip_wrong_order">पहली स्थिति से शुरू करें और स्क्रीन पर दिखाए गए क्रम का पालन करें।</string>
+    <string name="tip_wrong_side">अपने हाथ को घुमाकर वही हिस्सा दिखाएँ जो संदर्भ में दिखाया गया है।</string>
+    <string name="tip_shape">अपनी उँगलियों को इस तरह रखें कि हाथ का आकार संदर्भ से मेल खाए।</string>
+    <string name="tip_path">हाथ को दिखाए गए रास्ते और दिशा के अनुसार चलाएँ।</string>
+    <string name="tip_not_recognized">ऐप का पहचान मॉडल इस संकेत की पुष्टि नहीं कर पाया।</string>
+
+    <!-- Researcher Data Export Dialog -->
     <string name="researcher_export_pin">1504</string>
+    <string name="researcher_export_title">शोध डेटा एक्सपोर्ट करें</string>
+    <string name="researcher_export_message">पहले से इकट्ठा किए गए अध्ययन के डेटा को एक्सपोर्ट करने के लिए रिसर्चर PIN डालें।</string>
+    <string name="researcher_pin_hint">रिसर्चर PIN</string>
+    <string name="incorrect_pin">गलत PIN</string>
+    <string name="finish_session_before_export">डेटा एक्सपोर्ट करने से पहले प्रतिभागी का सत्र समाप्त करें।</string>
+    <string name="no_research_data_to_export">अभी एक्सपोर्ट करने के लिए कोई शोध डेटा उपलब्ध नहीं है।</string>
+    <string name="export_cancelled">डेटा एक्सपोर्ट रद्द कर दिया गया।</string>
+    <string name="research_data_exported">शोध डेटा एक्सपोर्ट हो गया। अध्ययन का मौजूदा डेटा इस डिवाइस पर सुरक्षित है।</string>
+    <string name="export_failed">डेटा एक्सपोर्ट नहीं हो पाया: %1$s</string>
 </resources>
