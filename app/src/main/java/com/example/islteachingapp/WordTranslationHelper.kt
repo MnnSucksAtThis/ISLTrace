@@ -30,7 +30,7 @@ object WordTranslationHelper {
         if (resId == 0) return null
         return try {
             val text = context.getString(resId).trim()
-            if (text.isEmpty()) null else text
+            text.ifEmpty { null }
         } catch (e: Exception) {
             null
         }

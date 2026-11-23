@@ -77,6 +77,10 @@ class WordListActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnChangeHand).setOnClickListener {
             StudyLogger.logInteraction(this, "SIGNING_HAND_SCREEN_OPENED")
+            val home = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(home)
             finish()
         }
     }
