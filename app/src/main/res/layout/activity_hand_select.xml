@@ -121,5 +121,15 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <!-- Continue Button -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/continue_action"
+            android:textSize="20sp" />
+
     </LinearLayout>
+
 </ScrollView>
