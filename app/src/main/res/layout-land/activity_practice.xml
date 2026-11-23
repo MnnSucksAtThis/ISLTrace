@@ -111,6 +111,39 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
+        <!-- Result action buttons: Retry, Watch Video, Words -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnResultRetry"
+                style="@style/PracticeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/retry" />
+
+            <Button
+                android:id="@+id/btnResultVideo"
+                style="@style/PracticeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/video" />
+
+            <Button
+                android:id="@+id/btnResultWords"
+                style="@style/PracticeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/words" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

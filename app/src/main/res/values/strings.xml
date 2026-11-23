@@ -14,6 +14,7 @@
     <string name="video_close">Back to practice</string>
     <string name="video_note">The real signer, shown like a mirror</string>
     <string name="video_speed">Speed: %1$s</string>
+    <string name="speed_dialog_title">Playback speed</string>
     <string name="video_error">This video could not be played.</string>
 
     <!-- Language & Settings -->

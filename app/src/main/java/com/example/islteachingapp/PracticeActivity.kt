@@ -8,10 +8,12 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -35,6 +37,7 @@ import java.util.UUID
 import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 /**
  * Practice screen for one word.
@@ -154,6 +157,10 @@ class PracticeActivity : AppCompatActivity() {
         btnVideoSpeed = findViewById(R.id.btnVideoSpeed)
         val btnRetry = findViewById<Button>(R.id.btnRetry)
 
+        val btnResultRetry = findViewById<Button>(R.id.btnResultRetry)
+        val btnResultVideo = findViewById<Button>(R.id.btnResultVideo)
+        val btnResultWords = findViewById<Button>(R.id.btnResultWords)
+
         word = intent.getStringExtra(Extras.WORD) ?: "Absent"
         classifierLabel = intent.getStringExtra(Extras.CLASSIFIER_LABEL) ?: word
         referenceAssetPath = intent.getStringExtra(Extras.REFERENCE_ASSET) ?: ReferenceSign.assetPath(word)
@@ -196,10 +203,11 @@ class PracticeActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
         val saved = prefs.getFloat(KEY_SPEED, DEFAULT_SPEED)
-        speed = SPEEDS.firstOrNull { abs(it - saved) < 0.01f } ?: DEFAULT_SPEED
+        speed = saved.coerceIn(MIN_SPEED, MAX_SPEED)
         updateSpeedButton()
 
         findViewById<Button>(R.id.btnBack).setOnClickListener { requestExitToWords() }
+        btnResultWords.setOnClickListener { requestExitToWords() }
 
         reference = try {
             val text = assets.open(referenceAssetPath).bufferedReader().use { it.readText() }
@@ -214,25 +222,28 @@ class PracticeActivity : AppCompatActivity() {
             btnDemo.isEnabled = false
             btnSpeed.isEnabled = false
             btnRetry.isEnabled = false
+            btnResultRetry.isEnabled = false
+            btnResultVideo.isEnabled = false
             return
         }
 
-        btnRetry.setOnClickListener {
+        val onRetryClick = {
             StudyLogger.logInteraction(this, "RETRY_SELECTED", word, completedAttempts.toString(), researchTaskId)
             resetRequested = true
             resultCard.visibility = View.GONE
             progressBar.progress = 0
             setFeedbackNow(getString(R.string.lower_hands_prompt))
         }
+        btnRetry.setOnClickListener { onRetryClick() }
+        btnResultRetry.setOnClickListener { onRetryClick() }
+
+        btnResultVideo.setOnClickListener { openVideo() }
 
         btnDemo.setOnClickListener {
             if (demoPlaying) skipRequested = true else restartWithDemo()
         }
 
-        btnSpeed.setOnClickListener {
-            nextSpeed()
-            restartWithDemo()          // show the sign at the new speed straight away
-        }
+        btnSpeed.setOnClickListener { showSpeedDialog() }
 
         setFeedbackNow(if (alreadyWatched) getString(R.string.lower_hands_prompt) else getString(R.string.watch_sign_first))
         if (savedInstanceState?.getBoolean(KEY_VIDEO_OPEN) == true && videoPlayer != null) openVideo()
@@ -250,10 +261,88 @@ class PracticeActivity : AppCompatActivity() {
         }
     }
 
+    // ------------------------------------------------------------------ speed dialog
+
+    private fun showSpeedDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_speed_slider, null)
+        val tvSpeedValue = dialogView.findViewById<TextView>(R.id.tvSpeedValue)
+        val seekSpeed = dialogView.findViewById<SeekBar>(R.id.seekSpeed)
+        val btnPreset05 = dialogView.findViewById<Button>(R.id.btnPreset05)
+        val btnPreset075 = dialogView.findViewById<Button>(R.id.btnPreset075)
+        val btnPreset1 = dialogView.findViewById<Button>(R.id.btnPreset1)
+        val btnPreset125 = dialogView.findViewById<Button>(R.id.btnPreset125)
+
+        // Map speed [0.25f, 1.50f] to progress [0, 100] (0.0125 step)
+        fun speedToProgress(s: Float): Int =
+            (((s - MIN_SPEED) / (MAX_SPEED - MIN_SPEED)) * 100).roundToInt().coerceIn(0, 100)
+
+        fun progressToSpeed(p: Int): Float {
+            val raw = MIN_SPEED + (p / 100f) * (MAX_SPEED - MIN_SPEED)
+            return (raw * 20).roundToInt() / 20f // snap to nearest 0.05
+        }
+
+        fun updateDialogText(s: Float) {
+            tvSpeedValue.text = formatSpeedLabel(s)
+        }
+
+        seekSpeed.progress = speedToProgress(speed)
+        updateDialogText(speed)
+
+        seekSpeed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    val newSpeed = progressToSpeed(progress)
+                    updateDialogText(newSpeed)
+                }
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
+        })
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.speed_dialog_title)
+            .setView(dialogView)
+            .setPositiveButton(R.string.continue_action) { _, _ ->
+                val newSpeed = progressToSpeed(seekSpeed.progress)
+                applySpeed(newSpeed)
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .create()
+
+        btnPreset05.setOnClickListener {
+            seekSpeed.progress = speedToProgress(0.5f)
+            updateDialogText(0.5f)
+        }
+        btnPreset075.setOnClickListener {
+            seekSpeed.progress = speedToProgress(0.75f)
+            updateDialogText(0.75f)
+        }
+        btnPreset1.setOnClickListener {
+            seekSpeed.progress = speedToProgress(1.0f)
+            updateDialogText(1.0f)
+        }
+        btnPreset125.setOnClickListener {
+            seekSpeed.progress = speedToProgress(1.25f)
+            updateDialogText(1.25f)
+        }
+
+        dialog.show()
+    }
+
+    private fun applySpeed(newSpeed: Float) {
+        speed = newSpeed
+        getSharedPreferences(PREFS, MODE_PRIVATE).edit().putFloat(KEY_SPEED, speed).apply()
+        StudyLogger.logInteraction(this, "PLAYBACK_SPEED_CHANGED", word, speed.toString(), researchTaskId)
+        updateSpeedButton()
+        videoPlayer?.setSpeed(speed)
+        restartWithDemo()
+    }
+
     // ------------------------------------------------------------------ video
 
     private fun setupVideo(leftHanded: Boolean, configuredVideoAsset: String) {
         val btnVideo = findViewById<Button>(R.id.btnVideo)
+        val btnResultVideo = findViewById<Button>(R.id.btnResultVideo)
         val hasClip = configuredVideoAsset.isNotBlank() && try {
             assets.openFd(configuredVideoAsset).close()
             true
@@ -262,6 +351,7 @@ class PracticeActivity : AppCompatActivity() {
             false
         }
         btnVideo.isEnabled = hasClip
+        btnResultVideo.isEnabled = hasClip
         if (!hasClip) return
 
         val surface = findViewById<TextureView>(R.id.videoSurface)
@@ -271,10 +361,7 @@ class PracticeActivity : AppCompatActivity() {
         }
         btnVideo.setOnClickListener { openVideo() }
         findViewById<Button>(R.id.btnVideoClose).setOnClickListener { closeVideo() }
-        btnVideoSpeed.setOnClickListener {
-            nextSpeed()
-            videoPlayer?.setSpeed(speed)
-        }
+        btnVideoSpeed.setOnClickListener { showSpeedDialog() }
     }
 
     /** Puts the practice on hold. Any attempt in progress is dropped, as the user stopped following. */
@@ -873,16 +960,11 @@ class PracticeActivity : AppCompatActivity() {
         setFeedbackNow(getString(R.string.watch_sign_first))
     }
 
-    private fun nextSpeed() {
-        val idx = SPEEDS.indexOfFirst { abs(it - speed) < 0.01f }
-        speed = SPEEDS[(idx + 1) % SPEEDS.size]
-        getSharedPreferences(PREFS, MODE_PRIVATE).edit().putFloat(KEY_SPEED, speed).apply()
-        StudyLogger.logInteraction(this, "PLAYBACK_SPEED_CHANGED", word, speed.toString(), researchTaskId)
-        updateSpeedButton()
-    }
+    private fun formatSpeedLabel(s: Float): String =
+        if (abs(s - s.roundToInt().toFloat()) < 0.01f) "${s.roundToInt()}x" else "${String.format(Locale.US, "%.2f", s).trimEnd('0')}x"
 
     private fun updateSpeedButton() {
-        val label = if (speed == 1f) "1x" else "${speed}x"
+        val label = formatSpeedLabel(speed)
         btnSpeed.text = label
         btnVideoSpeed.text = getString(R.string.video_speed, label)
     }
@@ -1004,8 +1086,8 @@ class PracticeActivity : AppCompatActivity() {
         private const val KEY_WATCHED = "watched"
         private const val KEY_VIDEO_OPEN = "video_open"
 
-        /** The clips are fast, so learners start at half speed and can work up. */
-        private val SPEEDS = floatArrayOf(0.5f, 0.75f, 1.0f)
+        private const val MIN_SPEED = 0.25f
+        private const val MAX_SPEED = 1.50f
         private const val DEFAULT_SPEED = 0.5f
         private const val DEMO_END_HOLD_MS = 400L
         private val EMPTY_ROW = FloatArray(HandGeometry.FRAME_FLOATS)
