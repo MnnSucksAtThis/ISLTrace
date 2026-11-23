@@ -29,12 +29,12 @@
     <string name="left_handed">बाएँ हाथ से साइन करता/करती हूँ</string>
 
     <!-- Word List Screen -->
-    <!-- <string name="choose_sign_to_practise">अभ्यास के लिए कोई संकेत चुनें</string> -->
-    <!-- <string name="participant_hand_info">प्रतिभागी · %1$s</string> -->
+    <string name="choose_sign_to_practise">अभ्यास के लिए कोई संकेत चुनें</string>
+    <string name="participant_hand_info">प्रतिभागी · %1$s</string>
     <string name="finish_participant_session">प्समाप्त करें</string>
     <string name="change_signing_hand">साइन करने वाला हाथ बदलें</string>
-    <!-- <string name="sign_catalog_error_title">संकेतों की सूची में समस्या</string> -->
-    <!-- <string name="sign_catalog_error_default">संकेतों की सूची लोड नहीं हो पाई।</string> -->
+    <string name="sign_catalog_error_title">संकेतों की सूची में समस्या</string>
+    <string name="sign_catalog_error_default">संकेतों की सूची लोड नहीं हो पाई।</string>
     <string name="return_to_start">शुरुआत पर वापस जाएँ</string>
     <string name="finish_practice_title">अभ्यास समाप्त करें?</string>
     <string name="finish_practice_message">क्या आप यह अभ्यास सत्र समाप्त करके शुरुआती स्क्रीन पर वापस जाना चाहते हैं?</string>
@@ -108,4 +108,24 @@
     <string name="tip_path">हाथ को दिखाए गए रास्ते और दिशा के अनुसार चलाएँ।</string>
     <string name="tip_not_recognized">ऐप का पहचान मॉडल इस संकेत की पुष्टि नहीं कर पाया।</string>
 
+    <string name="sign_absent">गैरहाज़िर</string>
+    <string name="sign_approve">मंज़ूर</string>
+    <string name="sign_red">लाल</string>
+    <string name="sign_green">हरा</string>
+    <string name="sign_today">आज</string>
+    <string name="sign_yesterday">कल</string>
+    <string name="sign_brain">दिमाग</string>
+    <string name="sign_heart">दिल</string>
+    <string name="sign_book">किताब</string>
+    <string name="sign_pen">कलम</string>
+    <string name="sign_chair">कुर्सी</string>
+    <string name="sign_sofa">सोफ़ा</string>
+    <string name="sign_computer">कंप्यूटर</string>
+    <string name="sign_laptop">लैपटॉप</string>
+    <string name="sign_cat">बिल्ली</string>
+    <string name="sign_dog">कुत्ता</string>
+    <string name="sign_game">खेल</string>
+    <string name="sign_sports">खेल-कूद</string>
+    <string name="sign_tomato">टमाटर</string>
+    <string name="sign_onion">प्याज़</string>
 </resources>

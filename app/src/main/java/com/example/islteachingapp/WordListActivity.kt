@@ -40,7 +40,10 @@ class WordListActivity : AppCompatActivity() {
         list.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            signs.mapIndexed { i, entry -> "${i + 1}.  ${entry.displayName}" }
+            signs.mapIndexed { i, entry ->
+                val display = WordTranslationHelper.formatDisplayLabel(this, entry.displayName)
+                "${i + 1}.  $display"
+            }
         )
         list.setOnItemClickListener { _, _, position, _ ->
             val entry = signs[position]

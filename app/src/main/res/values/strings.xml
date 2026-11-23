@@ -120,4 +120,26 @@
     <string name="export_cancelled">Export cancelled.</string>
     <string name="research_data_exported">Research data exported. Existing study data remains on this device.</string>
     <string name="export_failed">Export failed: %1$s</string>
+
+    <!-- Vocabulary Signs (Translations populated per locale) -->
+    <string name="sign_absent">Absent</string>
+    <string name="sign_approve">Approve</string>
+    <string name="sign_red">Red</string>
+    <string name="sign_green">Green</string>
+    <string name="sign_today">Today</string>
+    <string name="sign_yesterday">Yesterday</string>
+    <string name="sign_brain">Brain</string>
+    <string name="sign_heart">Heart</string>
+    <string name="sign_book">Book</string>
+    <string name="sign_pen">Pen</string>
+    <string name="sign_chair">Chair</string>
+    <string name="sign_sofa">Sofa</string>
+    <string name="sign_computer">Computer</string>
+    <string name="sign_laptop">Laptop</string>
+    <string name="sign_cat">Cat</string>
+    <string name="sign_dog">Dog</string>
+    <string name="sign_game">Game</string>
+    <string name="sign_sports">Sports</string>
+    <string name="sign_tomato">Tomato</string>
+    <string name="sign_onion">Onion</string>
 </resources>

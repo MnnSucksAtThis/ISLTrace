@@ -105,4 +105,25 @@
     <string name="tip_path">दाखवलेल्या मार्गानुसार हाताची हालचाल अधिक अचूकपणे करा.</string>
     <string name="tip_not_recognized">ॲपच्या ओळख प्रणालीला या संकेताची खात्री करता आली नाही.</string>
 
+    <string name="sign_absent">गैरहजर</string>
+    <string name="sign_approve">मान्य</string>
+    <string name="sign_red">लाल</string>
+    <string name="sign_green">हिरवा</string>
+    <string name="sign_today">आज</string>
+    <string name="sign_yesterday">काल</string>
+    <string name="sign_brain">मेंदू</string>
+    <string name="sign_heart">हृदय</string>
+    <string name="sign_book">पुस्तक</string>
+    <string name="sign_pen">पेन</string>
+    <string name="sign_chair">खुर्ची</string>
+    <string name="sign_sofa">सोफा</string>
+    <string name="sign_computer">कॉम्प्युटर</string>
+    <string name="sign_laptop">लॅपटॉप</string>
+    <string name="sign_cat">मांजर</string>
+    <string name="sign_dog">कुत्रा</string>
+    <string name="sign_game">खेळ</string>
+    <string name="sign_sports">खेळ</string>
+    <string name="sign_tomato">टोमॅटो</string>
+    <string name="sign_onion">कांदा</string>
+
 </resources>
